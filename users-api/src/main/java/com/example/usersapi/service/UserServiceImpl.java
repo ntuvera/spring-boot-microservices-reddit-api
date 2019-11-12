@@ -1,6 +1,8 @@
 package com.example.usersapi.service;
 
+import com.example.usersapi.model.JwtResponse;
 import com.example.usersapi.model.User;
+import com.example.usersapi.model.UserRole;
 import com.example.usersapi.repository.UserRepository;
 import com.example.usersapi.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +33,39 @@ public class UserServiceImpl implements UserService{
     private JwtUtil jwtUtil;
 
     @Override
-    public User signUpUser(User newUser) {
-        return userRepository.save(newUser);
+    public JwtResponse signUpUser(User newUser) {
+        JwtResponse signupResponse = new JwtResponse();
+        UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
+        newUser.setUserRole(userRole);
+        newUser.setPassword(bCryptPasswordEncoder.encode(newUser.getPassword()));
+
+        if (userRepository.save(newUser) != null) {
+            UserDetails userDetails = loadUserByUsername(newUser.getUsername());
+            signupResponse.setJwt(jwtUtil.generateToken(userDetails));
+            signupResponse.setUsername(newUser.getUsername());
+            signupResponse.setId(newUser.getId());
+
+            System.out.println(signupResponse);
+
+            return signupResponse;
+        }
+        return null;
     }
 
-    // TODO: finish after auth checks
     @Override
-    public User loginUser(User foundUser) {
-        return userRepository.findByUsername(foundUser.getUsername());
+    public JwtResponse loginUser(User user) {
+        JwtResponse loginResponse = new JwtResponse();
+        User foundUser = userRepository.findByUsername(user.getUsername());
+
+        if (foundUser != null && bCryptPasswordEncoder
+                .matches(user.getPassword(), foundUser.getPassword())) {
+            UserDetails userDetails = loadUserByUsername(foundUser.getUsername());
+            loginResponse.setJwt(jwtUtil.generateToken(userDetails));
+            loginResponse.setUsername(foundUser.getUsername());
+            loginResponse.setId(foundUser.getId());
+            return loginResponse;
+        }
+        return null;
     }
 
     @Override

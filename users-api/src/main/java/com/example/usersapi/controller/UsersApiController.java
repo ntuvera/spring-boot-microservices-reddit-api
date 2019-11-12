@@ -3,6 +3,7 @@ package com.example.usersapi.controller;
 import com.example.usersapi.model.User;
 import com.example.usersapi.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,12 +15,12 @@ public class UsersApiController {
     UserServiceImpl userService;
 
     @PostMapping("/signup")
-    public User signUpUser(@RequestBody User newUser){
-        return userService.signUpUser(newUser);
+    public ResponseEntity<?> signUpUser(@RequestBody User newUser){
+        return ResponseEntity.ok(userService.signUpUser(newUser));
     }
     @PostMapping("/login")
-    public User loginUser(@RequestBody User user){
-        return userService.loginUser(user);
+    public ResponseEntity<?> loginUser(@RequestBody User user){
+        return ResponseEntity.ok(userService.loginUser(user));
     }
     @GetMapping("/user/list")
     public Iterable<User> listAllUsers(){

@@ -3,7 +3,7 @@ package com.example.usersapi.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="user_role")
+@Table(name="user_roles")
 public class UserRole {
     @Id
     @Column
