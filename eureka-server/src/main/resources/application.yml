@@ -8,11 +8,11 @@ spring:
 zuul:
   routes:
     containerized-users:
-      path: /users/**
+      path: /user/**
       serviceId: containerized-users
     containerized-posts:
-      path: /posts/**
+      path: /post/**
       serviceId: containerized-posts
     containerized-comments:
-      path: /comments/**
+      path: /comment/**
       serviceId: containerized-comments

@@ -5,9 +5,8 @@ import com.example.usersapi.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class UsersApiController {
@@ -15,11 +14,15 @@ public class UsersApiController {
     UserServiceImpl userService;
 
     @PostMapping("/sign")
-    public User signUpUser(){
-        return userService.signUp();
+    public User signUpUser(@RequestBody User newUser){
+        return userService.signUpUser(newUser);
     }
-    @GetMapping("/list")
-    public List<User> listAllUsers(){
+    @PostMapping("/login")
+    public User loginUser(@RequestBody User user){
+        return userService.loginUser(user);
+    }
+    @GetMapping("/user/list")
+    public Iterable<User> listAllUsers(){
         return userService.listAll();
     }
 }
