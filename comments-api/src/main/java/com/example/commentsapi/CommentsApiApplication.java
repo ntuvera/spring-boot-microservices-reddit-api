@@ -1,4 +1,4 @@
-package com.example.usersapi;
+package com.example.commentsapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,13 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @EnableEurekaClient
 @RestController
-public class UsersApiApplication {
+public class CommentsApiApplication {
+
 	@GetMapping("/")
-	public String home(){
-		return "GET /users/";
+    public String home(){
+		return "GET /comments/";
 	}
+// TODO: Remove after testing ^
+
 	public static void main(String[] args) {
-		SpringApplication.run(UsersApiApplication.class, args);
+		SpringApplication.run(CommentsApiApplication.class, args);
 	}
 
 }
