@@ -1,6 +1,5 @@
 package com.example.usersapi.config;
 
-import com.example.springbootmonolith.service.UserService;
 import com.example.usersapi.service.UserServiceImpl;
 import com.example.usersapi.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;

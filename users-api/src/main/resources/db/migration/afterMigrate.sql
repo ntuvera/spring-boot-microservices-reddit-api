@@ -14,3 +14,9 @@ INSERT INTO comments
 VALUES ('BANG', 1,1),
 ('ZONK', 1, 1),
 ('POW', 2, 2);
+
+INSERT INTO user_roles
+(name)
+VALUES ('ROLE_DBA'),
+('ROLE_ADMIN'),
+('ROLE_USER');

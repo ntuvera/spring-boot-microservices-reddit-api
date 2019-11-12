@@ -13,7 +13,7 @@ public class UsersApiController {
     @Autowired
     UserServiceImpl userService;
 
-    @PostMapping("/sign")
+    @PostMapping("/signup")
     public User signUpUser(@RequestBody User newUser){
         return userService.signUpUser(newUser);
     }
