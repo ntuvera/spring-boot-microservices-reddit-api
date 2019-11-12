@@ -1,7 +1,13 @@
+INSERT INTO user_roles
+(name)
+VALUES ('ROLE_DBA'),
+('ROLE_ADMIN'),
+('ROLE_USER');
+
 INSERT INTO users
-(username, password, email)
-VALUES ('batman', 'bat', 'iam@batman.com'),
-('robin', 'bird', 'not@batman.com');
+(username, password, email, user_profile_id, user_role_id)
+VALUES ('batman', 'bat', 'iam@batman.com', null, 2),
+('robin', 'bird', 'not@batman.com', null, 3);
 
 INSERT INTO posts
 (title, description, user_id)
@@ -14,9 +20,3 @@ INSERT INTO comments
 VALUES ('BANG', 1,1),
 ('ZONK', 1, 1),
 ('POW', 2, 2);
-
-INSERT INTO user_roles
-(name)
-VALUES ('ROLE_DBA'),
-('ROLE_ADMIN'),
-('ROLE_USER');
