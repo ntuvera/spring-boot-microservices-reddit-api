@@ -46,7 +46,7 @@ services:
       - '8082:8082'
     working_dir: /app
     volumes:
-      - ./songs-api:/app
+      - ./posts-api:/app
     depends_on:
       - eureka
       - postgresdev
@@ -60,7 +60,7 @@ services:
       - '8083:8083'
     working_dir: /app
     volumes:
-      - ./songs-api:/app
+      - ./comments-api:/app
     depends_on:
       - eureka
       - postgresdev
