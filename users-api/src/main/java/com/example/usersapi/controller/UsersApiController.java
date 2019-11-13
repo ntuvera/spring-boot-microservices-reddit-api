@@ -22,7 +22,7 @@ public class UsersApiController {
     public ResponseEntity<?> loginUser(@RequestBody User user){
         return ResponseEntity.ok(userService.loginUser(user));
     }
-    @GetMapping("/user/list")
+    @GetMapping("/list")
     public Iterable<User> listAllUsers(){
         return userService.listAll();
     }
