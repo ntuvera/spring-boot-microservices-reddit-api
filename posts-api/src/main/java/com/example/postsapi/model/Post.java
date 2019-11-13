@@ -3,6 +3,7 @@ package com.example.postsapi.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name="posts")
 public class Post {
 
     @Id
@@ -11,7 +12,7 @@ public class Post {
     private int id;
 
     @Column
-    private String text;
+    private String title;
 
     @Column
     private String description;
@@ -21,10 +22,18 @@ public class Post {
 
     public Post() {}
 
-    public Post(String text, String description, int user_ic) {
-        this.text = text;
+    public Post(String title, String description, int user_id) {
+        this.title = title;
         this.description = description;
         this.user_id = user_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getId() {
@@ -33,14 +42,6 @@ public class Post {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 
     public String getDescription() {

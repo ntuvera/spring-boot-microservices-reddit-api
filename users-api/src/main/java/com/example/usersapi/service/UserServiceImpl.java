@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService{
 
         if (foundUser != null && encoder()
                 .matches(user.getPassword(), foundUser.getPassword())) {
-            loginResponse.setJwt(jwtUtil.generateToken(user));
+            loginResponse.setJwt(jwtUtil.generateToken(foundUser));
             loginResponse.setUsername(foundUser.getUsername());
             loginResponse.setId(foundUser.getId());
             return loginResponse;

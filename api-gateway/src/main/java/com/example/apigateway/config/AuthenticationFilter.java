@@ -23,7 +23,10 @@ public class AuthenticationFilter extends ZuulFilter {
     public Object run() {
         RequestContext ctx = RequestContext.getCurrentContext();
         String un = SecurityContextHolder.getContext().getAuthentication().getName();
+//        int id = SecurityContextHolder.getContext().getAuthentication().
         ctx.addZuulRequestHeader("username", un);
+        ctx.addZuulRequestHeader("userId", "1000");
+
         return null;
     }
 }
