@@ -1,0 +1,65 @@
+package com.example.commentsapi.model;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "comments")
+public class Comment {
+
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column
+    private String text;
+
+    @Column
+    private int postId;
+
+    @Column
+    private int userId;
+
+    public Comment() {
+    }
+
+    public Comment(String text, int postId, int userId) {
+        this.text = text;
+        this.postId = postId;
+        this.userId = userId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+}
