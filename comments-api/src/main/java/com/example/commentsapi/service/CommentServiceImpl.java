@@ -15,8 +15,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Comment createComment(Comment comment, int postId, int userId) {
-        comment.setPostId(postId);
-        comment.setUserId(userId);
+        comment.setPost_id(postId);
+        comment.setUser_id(userId);
         return commentRepository.save(comment);
     }
 
@@ -34,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
     public String deleteByCommentId(int commentId) {
         commentRepository.deleteById(commentId);
         Optional<Comment> foundComment = commentRepository.findById(commentId);
-        if (foundComment != null) {
+        if (foundComment.isPresent()) {
             return "Delete comment failed";
         }
         return "Delete comment succeeded";

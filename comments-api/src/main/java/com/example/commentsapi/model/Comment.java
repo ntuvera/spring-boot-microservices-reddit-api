@@ -17,18 +17,18 @@ public class Comment {
     private String text;
 
     @Column
-    private int postId;
+    private int post_id;
 
     @Column
-    private int userId;
+    private int user_id;
 
     public Comment() {
     }
 
-    public Comment(String text, int postId, int userId) {
+    public Comment(String text, int post_id, int user_id) {
         this.text = text;
-        this.postId = postId;
-        this.userId = userId;
+        this.post_id = post_id;
+        this.user_id = user_id;
     }
 
     public int getId() {
@@ -47,19 +47,19 @@ public class Comment {
         this.text = text;
     }
 
-    public int getPostId() {
-        return postId;
+    public int getPost_id() {
+        return post_id;
     }
 
-    public void setPostId(int postId) {
-        this.postId = postId;
+    public void setPost_id(int post_id) {
+        this.post_id = post_id;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 }

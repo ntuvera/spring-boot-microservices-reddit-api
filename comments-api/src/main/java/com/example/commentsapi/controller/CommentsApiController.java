@@ -1,7 +1,6 @@
 package com.example.commentsapi.controller;
 
 import com.example.commentsapi.model.Comment;
-import com.example.commentsapi.service.CommentService;
 import com.example.commentsapi.service.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +23,7 @@ public class CommentsApiController {
 
     @GetMapping("/user/comment")
     public Iterable<Comment> getCommentsByUserId(@RequestHeader("userId") int userId) {
-        return commentService.listCommentsByPostId(userId);
+        return commentService.listCommentsByUserId(userId);
     }
 
     @DeleteMapping("/{commentId}")
