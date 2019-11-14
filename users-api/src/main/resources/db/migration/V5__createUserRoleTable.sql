@@ -1,4 +1,4 @@
 CREATE TABLE user_roles (
     id SERIAL,
-    name VARCHAR(50)
+    name VARCHAR(50) UNIQUE NOT NULL
 );

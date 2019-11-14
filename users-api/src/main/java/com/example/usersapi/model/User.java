@@ -17,7 +17,7 @@ public class User {
     @Column
     private String password;
 
-    @Column
+    @Column(unique = true)
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
