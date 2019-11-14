@@ -13,7 +13,7 @@ public class CommentsApiApplication {
 
 	@GetMapping("/")
     public String home(){
-		return "GET /comments/";
+		return "GET /comment/";
 	}
 // TODO: Remove after testing ^
 
