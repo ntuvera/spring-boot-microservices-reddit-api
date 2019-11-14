@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS users;
+
 CREATE TABLE users (
     id SERIAL,
     username VARCHAR(100) UNIQUE NOT NULL,
