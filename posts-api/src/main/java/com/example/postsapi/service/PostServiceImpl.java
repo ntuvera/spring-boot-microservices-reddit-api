@@ -12,11 +12,9 @@ public class PostServiceImpl implements PostService {
     PostRepository postRepository;
 
     @Override
-    public Post createPost(Post newPost, @RequestHeader("id") int userId) {
-        String postTitle = newPost.getTitle();
-        String postDescription = newPost.getDescription();
-        postRepository.createPost(postTitle, postDescription, userId);
-        return newPost;
+    public Post createPost(Post newPost, int userId) {
+        newPost.setUser_id(userId);
+        return postRepository.save(newPost);
         // TODO: Better confirmation of success/failure to post
     }
 
