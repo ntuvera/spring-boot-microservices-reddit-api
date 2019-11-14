@@ -36,7 +36,6 @@ public class AuthenticationFilter extends ZuulFilter {
             id = jwtUtil.getUserIdFromToken(ctx.getRequest().getHeader("Authorization").substring(7));
         }
 
-        System.out.println(">>>>>>>>>>>>>>> id: " + id);
         ctx.addZuulRequestHeader("username", un);
         ctx.addZuulRequestHeader("userId", id);
         return null;
