@@ -8,6 +8,6 @@ import java.util.List;
 
 @FeignClient(name="comment")
 public interface CommentClient {
-    @GetMapping(value="/post/2/comment")
+    @GetMapping(value="/post/{postId}/comment")
     public List<CommentBean> getCommentsByPostId();
 }
