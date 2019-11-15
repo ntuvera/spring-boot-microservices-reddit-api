@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS posts;
 CREATE TABLE posts (
     id SERIAL,
     title VARCHAR(100) NOT NULL,

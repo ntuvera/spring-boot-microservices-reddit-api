@@ -3,14 +3,14 @@ package com.example.usersapi.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="user_profile")
+@Table(name="user_profiles")
 public class UserProfile {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(name="additional_email")
     private String additionalEmail;
 
     @Column
@@ -19,7 +19,7 @@ public class UserProfile {
     @Column
     private String address;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="user_id", nullable = false)
     private int userId;
 
     public UserProfile() { }
