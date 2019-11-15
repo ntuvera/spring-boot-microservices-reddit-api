@@ -6,10 +6,7 @@ import com.example.usersapi.model.User;
 import com.example.usersapi.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,10 +27,15 @@ public class UsersApiController {
         return ResponseEntity.ok(userService.loginUser(user));
     }
     @GetMapping("/list")
-    public List<PostBean> listAllUsers(){
+    public Iterable<User> listAllUsers(){
+        return userService.listAll();
+    }
+
+    // Feign Client to post service routes
+    @GetMapping("/post")
+    public List<PostBean> listPostsByUser(@RequestHeader("userId") Integer userId){
         System.out.println("HEY HEY HEY HYE HEY HEY HEY HEY HEY");
         System.out.println(postClient.getAllPosts().size());
-        return postClient.getAllPosts();
-//        return userService.listAll();
+        return postClient.getAllPostsByUser();
     }
 }
