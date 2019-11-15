@@ -1,7 +1,5 @@
 package com.example.commentsapi.model;
 
-import org.springframework.web.bind.annotation.GetMapping;
-
 import javax.persistence.*;
 
 @Entity
@@ -16,19 +14,19 @@ public class Comment {
     @Column
     private String text;
 
-    @Column
-    private int post_id;
+    @Column(name="post_id")
+    private int postId;
 
-    @Column
-    private int user_id;
+    @Column(name="user_id")
+    private int userId;
 
     public Comment() {
     }
 
-    public Comment(String text, int post_id, int user_id) {
+    public Comment(String text, int postId, int userId) {
         this.text = text;
-        this.post_id = post_id;
-        this.user_id = user_id;
+        this.postId = postId;
+        this.userId = userId;
     }
 
     public int getId() {
@@ -47,19 +45,19 @@ public class Comment {
         this.text = text;
     }
 
-    public int getPost_id() {
-        return post_id;
+    public int getPostId() {
+        return postId;
     }
 
-    public void setPost_id(int post_id) {
-        this.post_id = post_id;
+    public void setPostId(int postId) {
+        this.postId = postId;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
