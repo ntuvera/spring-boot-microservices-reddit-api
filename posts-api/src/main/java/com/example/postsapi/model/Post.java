@@ -16,7 +16,7 @@ public class Post {
 
     @Column
     private String description;
-
+// TODO: this shoudl be some kind of user.username
     @Column
     private int user_id;
 
@@ -59,4 +59,5 @@ public class Post {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
 }

@@ -1,4 +1,9 @@
 package com.example.postsapi.feign;
 
-public class UserClient {
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name="user")
+public interface UserClient {
+//    @GetMapping(value="/user/{userId}")
+//    public UserBean getUserByUserId();
 }
