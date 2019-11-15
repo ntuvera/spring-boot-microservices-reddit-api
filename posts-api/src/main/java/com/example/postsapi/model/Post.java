@@ -1,5 +1,7 @@
 package com.example.postsapi.model;
 
+import com.example.postsapi.bean.UserBean;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,12 +22,15 @@ public class Post {
     @Column
     private int user_id;
 
+    private UserBean user;
+
     public Post() {}
 
-    public Post(String title, String description, int user_id) {
+    public Post(String title, String description, int user_id, UserBean user) {
         this.title = title;
         this.description = description;
         this.user_id = user_id;
+        this.user = user;
     }
 
     public String getTitle() {
@@ -58,5 +63,13 @@ public class Post {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public UserBean getUser() {
+        return user;
+    }
+
+    public void setUser(UserBean user) {
+        this.user = user;
     }
 }
