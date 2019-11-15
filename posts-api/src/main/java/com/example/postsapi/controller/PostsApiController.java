@@ -24,7 +24,7 @@ public class PostsApiController {
     @GetMapping("/user") // TOOD: can we explicitly call this from localhost:8080??? ask Isha
 //    public Iterable<Post> getPostsByUserId(@RequestHeader("Authorization") int userId) {
     // TODO: Interservice communication FIRST store userId in Token then Grab from header?
-    public Iterable<Post> getPostsByUserId(int userId) {
+    public Iterable<Post> getPostsByUserId(Integer userId) {
         return postService.getPostByUserId(userId);
     }
 
