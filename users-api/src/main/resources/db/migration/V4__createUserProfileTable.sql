@@ -4,5 +4,5 @@ CREATE TABLE user_profiles (
     additional_email VARCHAR(100),
     mobile VARCHAR(50),
     address VARCHAR(50),
-    user_id INT UNIQUE
+    user_id INT
 );

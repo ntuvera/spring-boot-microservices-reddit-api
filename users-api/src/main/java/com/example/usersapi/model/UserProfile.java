@@ -19,7 +19,7 @@ public class UserProfile {
     @Column
     private String address;
 
-    @Column(name="user_id", unique = true, nullable = false)
+    @Column(name="user_id", nullable = false)
     private int userId;
 
     public UserProfile() { }

@@ -56,7 +56,8 @@ public class UserProfileServiceImpl implements UserProfileService{
     @Override
     public UserProfile getUserProfile(int userId) {
 //        return Iterable.get(userProfileRepository.getUserProfileByUserId(userId),0);
-        return userProfileRepository.getUserProfileByUserId(userId).iterator().next();
+//        return userProfileRepository.getUserProfileByUserId(userId).iterator().next();
+        return userProfileRepository.getUserProfileByUserId(userId);
     }
 
     @Override
