@@ -1,4 +1,8 @@
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS user_profiles;
+DROP TABLE IF EXISTS user_roles;
 
 CREATE TABLE users (
     id SERIAL,
