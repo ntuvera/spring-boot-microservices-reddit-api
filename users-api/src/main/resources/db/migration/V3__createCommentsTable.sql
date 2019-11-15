@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS comments;
 CREATE TABLE comments (
     id SERIAL,
     text VARCHAR(250) NOT NULL,
