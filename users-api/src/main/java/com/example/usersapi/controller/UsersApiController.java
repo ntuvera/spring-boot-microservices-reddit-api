@@ -1,6 +1,8 @@
 package com.example.usersapi.controller;
 
+import com.example.usersapi.bean.CommentBean;
 import com.example.usersapi.bean.PostBean;
+import com.example.usersapi.feign.CommentClient;
 import com.example.usersapi.feign.PostClient;
 import com.example.usersapi.model.User;
 import com.example.usersapi.service.UserServiceImpl;
@@ -18,6 +20,9 @@ public class UsersApiController {
     @Autowired
     PostClient postClient;
 
+    @Autowired
+    CommentClient commentClient;
+
     @PostMapping("/signup")
     public ResponseEntity<?> signUpUser(@RequestBody User newUser){
         return ResponseEntity.ok(userService.signUpUser(newUser));
@@ -34,8 +39,11 @@ public class UsersApiController {
     // Feign Client to post service routes
     @GetMapping("/post")
     public List<PostBean> listPostsByUser(@RequestHeader("userId") Integer userId){
-        System.out.println("HEY HEY HEY HYE HEY HEY HEY HEY HEY");
-        System.out.println(postClient.getAllPosts().size());
         return postClient.getAllPostsByUser();
+    }
+
+    @GetMapping("/comment")
+    public List<CommentBean> listCommentsByUser(@RequestHeader("userId") Integer userId) {
+        return commentClient.getAllCommentsByUser();
     }
 }

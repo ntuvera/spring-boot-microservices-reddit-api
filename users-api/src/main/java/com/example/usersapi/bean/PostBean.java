@@ -1,7 +1,5 @@
 package com.example.usersapi.bean;
 
-import org.springframework.context.annotation.Bean;
-
 public class PostBean {
     private int id;
     private String title;
