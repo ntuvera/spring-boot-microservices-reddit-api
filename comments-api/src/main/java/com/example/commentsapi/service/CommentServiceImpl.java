@@ -5,6 +5,7 @@ import com.example.commentsapi.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Optional;
 
 @Service
@@ -14,10 +15,17 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
 
     @Override
-    public Comment createComment(Comment comment, int postId, int userId) {
+    public Comment createComment(Comment comment, int postId, int userId, String username) {
+        HashMap<String, String> usernameMap = new HashMap<>();
+        usernameMap.put("username", username);
+
         comment.setPostId(postId);
         comment.setUserId(userId);
-        return commentRepository.save(comment);
+
+        Comment newComment = commentRepository.save(comment);
+        newComment.setUser(usernameMap);
+
+        return newComment;
     }
 
     @Override

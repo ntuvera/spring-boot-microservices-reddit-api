@@ -12,8 +12,8 @@ public class CommentsApiController {
     private CommentServiceImpl commentService;
 
     @PostMapping("/{postId}")
-    public Comment createComment(@RequestBody Comment comment, @PathVariable int postId, @RequestHeader("userId") int userId) {
-        return commentService.createComment(comment, postId, userId);
+    public Comment createComment(@RequestBody Comment comment, @PathVariable int postId, @RequestHeader("userId") int userId, @RequestHeader("username") String username) {
+        return commentService.createComment(comment, postId, userId, username);
     }
 
     @GetMapping("/post/{postId}/comment")

@@ -2,8 +2,8 @@ version: '3'
 
 services:
   eureka:
-    image: maven:3.6.1-jdk-8
-    # build: ./eureka-server
+    # image: maven:3.6.1-jdk-8
+    build: ./eureka-server
     ports:
       - '8761:8761'
     working_dir: /app
@@ -12,9 +12,10 @@ services:
     command: 'mvn spring-boot:run'
     environment:
       - SPRING_PROFILES_ACTIVE=dev
+      - TERM=xterm-256color`
   api-gateway:
-    image: maven:3.6.1-jdk-8
-    # build: ./api-gateway
+    # image: maven:3.6.1-jdk-8
+    build: ./api-gateway
     ports:
       - '8080:8080'
     working_dir: /app
@@ -26,9 +27,10 @@ services:
     command: 'mvn spring-boot:run'
     environment:
       - SPRING_PROFILES_ACTIVE=dev
+      - TERM=xterm-256color`
   users-api:
-    image: maven:3.6.1-jdk-8
-    # build: ./users-api
+    # image: maven:3.6.1-jdk-8
+    build: ./users-api
     ports:
       - '8081:8081'
     working_dir: /app
@@ -40,9 +42,10 @@ services:
     command: 'mvn spring-boot:run'
     environment:
       - SPRING_PROFILES_ACTIVE=dev
+      - TERM=xterm-256color`
   posts-api:
-    image: maven:3.6.1-jdk-8
-    # build: ./posts-api
+    # image: maven:3.6.1-jdk-8
+    build: ./posts-api
     ports:
       - '8082:8082'
     working_dir: /app
@@ -55,8 +58,8 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=dev
   comments-api:
-    image: maven:3.6.1-jdk-8
-    # build: ./comments-api
+    # image: maven:3.6.1-jdk-8
+    build: ./comments-api
     ports:
       - '8083:8083'
     working_dir: /app
