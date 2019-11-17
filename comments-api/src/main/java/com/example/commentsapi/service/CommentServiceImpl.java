@@ -23,7 +23,6 @@ public class CommentServiceImpl implements CommentService {
         comment.setUserId(userId);
 
         Comment newComment = commentRepository.save(comment);
-        newComment.setUser(usernameMap);
 
         return newComment;
     }

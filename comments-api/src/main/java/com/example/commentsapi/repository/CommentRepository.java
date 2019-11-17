@@ -8,10 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CommentRepository extends CrudRepository<Comment, Integer> {
 
-    @Query("FROM Comment c WHERE c.postId = ?1")
+    @Query(value="SELECT c.*, p.* FROM comments AS c JOIN posts AS p ON p.id = c.post_id WHERE c.post_id = :postId", nativeQuery = true)
     public Iterable<Comment> listCommentsByPostId(int postId);
 
-    @Query("FROM Comment c WHERE c.userId = ?1")
+    @Query(value="SELECT c.*, u.* FROM comments AS c JOIN users AS u ON c.user_id = u.id WHERE c.user_id = :userId", nativeQuery = true)
     public Iterable<Comment> listCommentsByUserId(int userId);
 
 }

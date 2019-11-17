@@ -12,26 +12,22 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(name = "text")
     private String text;
 
-    @Column(name="post_id")
+    @Column(name = "post_id")
     private int postId;
 
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private int userId;
-
-    @Column(name="user")
-    private HashMap<String, String> user;
 
     public Comment() {
     }
 
-    public Comment(String text, int postId, int userId, HashMap user) {
+    public Comment(String text, int postId, int userId) {
         this.text = text;
         this.postId = postId;
         this.userId = userId;
-        this.user = user;
     }
 
     public int getId() {
@@ -64,13 +60,5 @@ public class Comment {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public HashMap<String, String> getUser() {
-        return user;
-    }
-
-    public void setUser(HashMap user) {
-        this.user = user;
     }
 }
