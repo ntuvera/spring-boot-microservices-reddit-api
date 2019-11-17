@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public JwtResponse loginUser(User user) {
         JwtResponse loginResponse = new JwtResponse();
-        User foundUser = userRepository.findByUsername(user.getUsername());
+        User foundUser = userRepository.findByEmail(user.getEmail());
 
         if (foundUser != null && encoder()
                 .matches(user.getPassword(), foundUser.getPassword())) {
