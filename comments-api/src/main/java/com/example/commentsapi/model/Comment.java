@@ -1,6 +1,10 @@
 package com.example.commentsapi.model;
 
+import com.example.commentsapi.bean.PostBean;
+import com.example.commentsapi.bean.UserBean;
+
 import javax.persistence.*;
+import java.util.HashMap;
 
 @Entity
 @Table(name = "comments")
@@ -11,14 +15,20 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(name = "text")
     private String text;
 
-    @Column(name="post_id")
+    @Column(name = "post_id")
     private int postId;
 
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private int userId;
+
+    @Transient
+    private UserBean user;
+
+    @Transient
+    private PostBean post;
 
     public Comment() {
     }
@@ -59,5 +69,21 @@ public class Comment {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public UserBean getUser() {
+        return user;
+    }
+
+    public void setUser(UserBean user) {
+        this.user = user;
+    }
+
+    public PostBean getPost() {
+        return post;
+    }
+
+    public void setPost(PostBean post) {
+        this.post = post;
     }
 }
