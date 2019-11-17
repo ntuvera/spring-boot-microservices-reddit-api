@@ -22,7 +22,7 @@ services:
     volumes:
       - ./api-gateway:/app
     depends_on:
-      # - eureka
+      - eureka
       - postgresdev
     command: 'mvn spring-boot:run'
     environment:
@@ -37,7 +37,7 @@ services:
     volumes:
       - ./users-api:/app
     depends_on:
-      # - eureka
+      - eureka
       - postgresdev
     command: 'mvn spring-boot:run'
     environment:
@@ -52,7 +52,7 @@ services:
     volumes:
       - ./posts-api:/app
     depends_on:
-      # - eureka
+      - eureka
       - postgresdev
     command: 'mvn spring-boot:run'
     environment:
@@ -66,7 +66,7 @@ services:
     volumes:
       - ./comments-api:/app
     depends_on:
-      # - eureka
+      - eureka
       - postgresdev
     command: 'mvn spring-boot:run'
     environment:
