@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     // This is new, just create the bean here
     @Bean
     public PasswordEncoder encoder() {return new BCryptPasswordEncoder(); }
