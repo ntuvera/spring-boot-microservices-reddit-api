@@ -42,9 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                         "/post/list",
                         "/comment/list",
                         "/post/*/comment").permitAll()
-                .antMatchers("/user/list",  "/profile/**", "/post/**", "/comment/**").authenticated()
-                .antMatchers("/role/**")
-                .hasRole("ADMIN")
+                .antMatchers(
+                        "/user/list",
+                        "/user/comment",
+                        "/profile/**",
+                        "/post/**",
+                        "/comment/**").authenticated()
+                .antMatchers("/role/**").hasRole("ADMIN")
                 .and()
                 .httpBasic()
                 .and()
