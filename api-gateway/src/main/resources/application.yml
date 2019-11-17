@@ -20,6 +20,10 @@ zuul:
       path: /profile/**
       serviceId: user
       strip-prefix: false
+    getPostsByUserId:
+      path: /user/post
+      serviceId: post
+      strip-prefix: false
 
 ribbon:
   ReadTimeout: 60000
