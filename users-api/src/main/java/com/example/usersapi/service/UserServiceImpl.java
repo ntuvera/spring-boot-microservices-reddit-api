@@ -6,14 +6,12 @@ import com.example.usersapi.model.UserRole;
 import com.example.usersapi.repository.UserRepository;
 import com.example.usersapi.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -68,6 +66,14 @@ public class UserServiceImpl implements UserService{
     @Override
     public Iterable<User> listAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public Optional<User> findById(int userId) {
+        if(userRepository.findById(userId).isPresent()) {
+            return userRepository.findById(userId);
+        }
+        return null;
     }
 
     private User getUser(String username) {
