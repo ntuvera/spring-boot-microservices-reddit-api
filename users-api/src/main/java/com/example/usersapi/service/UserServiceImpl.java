@@ -31,7 +31,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public JwtResponse signUpUser(User newUser) {
         JwtResponse signupResponse = new JwtResponse();
-        UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
+        UserRole userRole = null;
+
+        if (newUser.getUserRole() != null) {
+            userRole = userRoleService.getRole(newUser.getUserRole().getName());
+        } else {
+            userRole = userRoleService.getRole("ROLE_USER");
+        }
+
         newUser.setUserRole(userRole);
         newUser.setPassword(encoder().encode(newUser.getPassword()));
 
