@@ -39,25 +39,19 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Iterable<Comment> listCommentsByPostId(int postId) {
-        Iterable<Comment> foundPostComments = commentRepository.findAll();
-
-        foundPostComments.forEach((comment) -> {
-            UserBean fetchedUser = userClient.getUserById(comment.getUserId());
-
-            if(fetchedUser != null)
-                comment.setUser(fetchedUser);
-
-            PostBean fetchedPost = postClient.getPostById(comment.getPostId());
-            
-            if(fetchedPost != null)
-                comment.setPost(fetchedPost);
-        });
+        listComments();
 
         return commentRepository.listCommentsByPostId(postId);
     }
 
     @Override
     public Iterable<Comment> listCommentsByUserId(int userId) {
+        listComments();
+
+        return commentRepository.listCommentsByUserId(userId);
+    }
+
+    private Iterable<Comment> listComments() {
         Iterable<Comment> foundUserComments = commentRepository.findAll();
 
         foundUserComments.forEach((comment) -> {
@@ -65,8 +59,13 @@ public class CommentServiceImpl implements CommentService {
 
             if(fetchedUser != null)
                 comment.setUser(fetchedUser);
+
+            PostBean fetchedPost = postClient.getPostById(comment.getPostId());
+
+            if(fetchedPost != null)
+                comment.setPost(fetchedPost);
         });
-        return commentRepository.listCommentsByUserId(userId);
+        return foundUserComments;
     }
 
     @Override
