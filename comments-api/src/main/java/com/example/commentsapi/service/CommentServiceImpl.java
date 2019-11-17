@@ -17,7 +17,7 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
 
     @Autowired
-    UserClient userClient;
+    private UserClient userClient;
 
     @Override
     public Comment createComment(Comment comment, int postId, int userId, String username) {
@@ -34,6 +34,16 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Iterable<Comment> listCommentsByPostId(int postId) {
+
+        Iterable<Comment> foundUserComments = commentRepository.findAll();
+
+        foundUserComments.forEach((comment) -> {
+            UserBean fetchedUser = userClient.getUserById(comment.getUserId());
+            if(fetchedUser !=null) {
+                comment.setUser(fetchedUser);
+            }
+        });
+
         return commentRepository.listCommentsByPostId(postId);
     }
 
@@ -42,7 +52,7 @@ public class CommentServiceImpl implements CommentService {
         Iterable<Comment> foundUserComments = commentRepository.findAll();
 
         foundUserComments.forEach((comment) -> {
-            UserBean fetchedUser = userClient.getUserById(comment.getUser_id());
+            UserBean fetchedUser = userClient.getUserById(comment.getUserId());
             if(fetchedUser !=null) {
                 comment.setUser(fetchedUser);
             }
