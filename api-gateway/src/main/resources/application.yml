@@ -16,6 +16,10 @@ zuul:
       path: /user/comment
       serviceId: comment
       strip-prefix: false
+    profile:
+      path: /profile/**
+      serviceId: user
+      strip-prefix: false
 
 ribbon:
   ReadTimeout: 60000
