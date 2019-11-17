@@ -6,10 +6,6 @@ import com.example.postsapi.model.Post;
 import com.example.postsapi.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestHeader;
-
-import java.util.ArrayList;
-import java.util.function.Consumer;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -34,14 +30,12 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Iterable<Post> listPosts() {
-        Iterable<Post> allPosts = new ArrayList<Post>();
-        allPosts = postRepository.findAll();
+        Iterable<Post> allPosts = postRepository.findAll();
         allPosts.forEach((post) -> {
             UserBean fetchedUser = userClient.getUserById(post.getUser_id());
             if(fetchedUser != null) {
                 post.setUser(fetchedUser);
             } else {
-//                UserBean missingUser = new UserBean("deleted");
                 post.setUser(new UserBean("User has been Deleted"));
             }
         });
