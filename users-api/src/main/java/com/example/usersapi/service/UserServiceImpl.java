@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
         if (userRepository.save(newUser) != null) {
             User user = loadUserByUsername(newUser.getUsername());
-            signupResponse.setJwt(jwtUtil.generateToken(user));
+            signupResponse.setToken(jwtUtil.generateToken(user));
             signupResponse.setUsername(newUser.getUsername());
             signupResponse.setId(newUser.getId());
 
@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
 
         if (foundUser != null && encoder()
                 .matches(user.getPassword(), foundUser.getPassword())) {
-            loginResponse.setJwt(jwtUtil.generateToken(foundUser));
+            loginResponse.setToken(jwtUtil.generateToken(foundUser));
             loginResponse.setUsername(foundUser.getUsername());
             loginResponse.setId(foundUser.getId());
             return loginResponse;
