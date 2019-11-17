@@ -47,7 +47,7 @@ public class UsersApiController {
     // Feign Client to post service routes
     @GetMapping("/post")
     public List<PostBean> listPostsByUser(@RequestHeader("userId") Integer userId){
-        return postClient.getAllPostsByUser();
+        return postClient.getAllPostsByUser(userId);
     }
 
     @GetMapping("/comment")
