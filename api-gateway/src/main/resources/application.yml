@@ -8,6 +8,10 @@ zuul:
       path: /signup/**
       serviceId: user
       strip-prefix: false
+    getCommentsByPostId:
+      path: /post/*/comment
+      serviceId: comment
+      strip-prefix: false
 
 ribbon:
   ReadTimeout: 60000
