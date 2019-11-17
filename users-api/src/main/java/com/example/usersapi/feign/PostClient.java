@@ -13,5 +13,5 @@ public interface PostClient {
     List<PostBean> getAllPosts();
 
     @GetMapping(value="/user")
-    List<PostBean> getAllPostsByUser(Integer userId);
+    List<PostBean> getAllPostsByUser();
 }

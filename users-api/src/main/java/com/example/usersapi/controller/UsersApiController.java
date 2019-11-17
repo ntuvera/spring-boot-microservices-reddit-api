@@ -47,7 +47,7 @@ public class UsersApiController {
     // Feign Client to post service routes
     @GetMapping("/post")
     public List<PostBean> listPostsByUser(@RequestHeader("userId") Integer userId){
-        return postClient.getAllPostsByUser(userId);
+        return postClient.getAllPostsByUser();
     }
 
     @GetMapping("/comment")
@@ -61,12 +61,12 @@ public class UsersApiController {
     }
 
     @PostMapping("/profile")
-    public UserProfile createUserProfile(@RequestBody UserProfile userProfile, @RequestHeader("userId") Integer userId){
+    public UserProfile createUserProfile(@RequestBody UserProfile userProfile, @RequestHeader("userId") int userId){
         return userProfileService.createProfile(userProfile, userId);
     }
 
     @DeleteMapping("/profile")
-    public UserProfile deleteUserProfile(@RequestBody UserProfile userProfile, @RequestHeader("userId") Integer userId){
+    public UserProfile deleteUserProfile(@RequestBody UserProfile userProfile, @RequestHeader("userId") int userId){
         return userProfileService.deleteProfile(userId);
     }
 
