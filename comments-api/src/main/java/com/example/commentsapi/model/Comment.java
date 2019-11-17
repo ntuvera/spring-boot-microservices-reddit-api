@@ -1,5 +1,7 @@
 package com.example.commentsapi.model;
 
+import com.example.commentsapi.bean.UserBean;
+
 import javax.persistence.*;
 import java.util.HashMap;
 
@@ -20,6 +22,9 @@ public class Comment {
 
     @Column(name = "user_id")
     private int userId;
+
+    @Transient
+    private UserBean user;
 
     public Comment() {
     }
@@ -60,5 +65,13 @@ public class Comment {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public UserBean getUser() {
+        return user;
+    }
+
+    public void setUser(UserBean user) {
+        this.user = user;
     }
 }
