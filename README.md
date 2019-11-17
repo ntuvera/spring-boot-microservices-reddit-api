@@ -23,7 +23,11 @@ The initial database was setup with migrations using Flyway, to greater control 
 
 After confirming matching endpoints and getting similarly formatted returns (follow the original pattern with more optional data).  We then moved forward to testing the front-end against our newly built microservice back-end.  At this point, the focus was on ensuring the front-end worked seamlessly with the new back-end, essentially replacing the orginal monolithic back-end.  Given the front-to-back-end contract, with the correct endpoints/returns, we had to solve any configuration issues to ensure the api calls worked smoothly.  Finally, since we were able to check our API with Postman adn reviewing raw HTTP requests we then had to finish  andling CORs between the Front-end and back-end.
 
-### Major Hurdles
+### Major Hurdles and Challenges Faced
+One of the first major hurdles we had to overcome was implementing Authenticationa nd Authorization between microservices.  Previously we've only built monolithic applications which only would employ only having a single node to hit, so setting up a pre-filter gateway to that made sense.  We initialyl were going to keep all auth on the user microservice which would end up coupling posts and comments to users mroe tightly.  But by separating the generating of auth to the user service, which usualyl was hti first, but then allowing the gateway to do the check, every call would be made separate from the user service after the initial authentication through users.
+
+Another major hurdle we faced was our erd and database.  At initial planning it seemed straight forward, however we used to flyway to migrate our tables from the beginning.  This allowed to decouple our tables in theory, but we had to make up for it in the code.  The main challenge was trying to compensate for relationships that were usualyl provided to us easily by hibernate.  Foreign key ids in hiberate could be used to easily referenced other "embedded" objects and would be less code.  However, by generating our own Object Beans and making feign calls we were able to inidividually create missing entities and append them to the the reutrns we excepted, even add more if we chose to, such as generating the User Object in all Post and Comment returns.
+
 
 ### Pivotal Tracker _(for planning and organizing tasks)_
 https://www.pivotaltracker.com/n/projects/2417719
