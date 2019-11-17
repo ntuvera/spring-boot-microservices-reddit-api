@@ -70,9 +70,7 @@ public class UsersApiController {
         return userProfileService.deleteProfile(userId);
     }
 
-
     // FeignClient Routes for inter-service communication
-
     @GetMapping("/identify/{userId}")
     public Optional<User> findUserById(@PathVariable int userId) {
         return userService.findById(userId);
