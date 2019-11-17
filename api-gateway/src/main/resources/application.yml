@@ -1,3 +1,30 @@
+zuul:
+  routes:
+    login:
+      path: /login/**
+      serviceId: user
+      strip-prefix: false
+    signup:
+      path: /signup/**
+      serviceId: user
+      strip-prefix: false
+    getCommentsByPostId:
+      path: /post/*/comment
+      serviceId: comment
+      strip-prefix: false
+    getCommentsByUserId:
+      path: /user/comment
+      serviceId: comment
+      strip-prefix: false
+    profile:
+      path: /profile/**
+      serviceId: user
+      strip-prefix: false
+    getPostsByUserId:
+      path: /user/post
+      serviceId: post
+      strip-prefix: false
+
 ribbon:
   ReadTimeout: 60000
   connection-timeout: 3000
