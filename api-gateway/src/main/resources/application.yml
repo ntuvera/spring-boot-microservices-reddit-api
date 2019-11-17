@@ -2,7 +2,12 @@ zuul:
   routes:
     user-login:
       path: /login
-      url: http://localhost:8081/login
+      stripPrefix: false
+      serviceId: user
+    user-signup:
+      path: /signup
+      stripPrefix: false
+      serviceId: user
 
 hystrix:
   command:
