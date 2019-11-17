@@ -1,3 +1,10 @@
+zuul:
+  routes:
+    user:
+      path: /login/**
+      serviceId: user
+      strip-prefix: false
+
 ribbon:
   ReadTimeout: 60000
   connection-timeout: 3000
