@@ -12,6 +12,10 @@ zuul:
       path: /post/*/comment
       serviceId: comment
       strip-prefix: false
+    getCommentsByUserId:
+      path: /user/comment
+      serviceId: comment
+      strip-prefix: false
 
 ribbon:
   ReadTimeout: 60000
