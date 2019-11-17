@@ -1,5 +1,6 @@
 package com.example.commentsapi.model;
 
+import com.example.commentsapi.bean.PostBean;
 import com.example.commentsapi.bean.UserBean;
 
 import javax.persistence.*;
@@ -25,6 +26,9 @@ public class Comment {
 
     @Transient
     private UserBean user;
+
+    @Transient
+    private PostBean post;
 
     public Comment() {
     }
@@ -73,5 +77,13 @@ public class Comment {
 
     public void setUser(UserBean user) {
         this.user = user;
+    }
+
+    public PostBean getPost() {
+        return post;
+    }
+
+    public void setPost(PostBean post) {
+        this.post = post;
     }
 }

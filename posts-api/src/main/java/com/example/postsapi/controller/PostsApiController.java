@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class PostsApiController {
@@ -46,5 +47,11 @@ public class PostsApiController {
     public List<CommentBean> addCommentToPost(@PathVariable int postId, @RequestHeader("userId") Integer userId) {
         // TODO: change format, but check list of comments for now
         return commentClient.getCommentsByPostId(postId);
+    }
+
+    // Feign Client Get Post By Id
+    @GetMapping("identify/{postId}")
+    public Optional<Post> findPostById(@PathVariable int postId) {
+        return postService.findById(postId);
     }
 }
