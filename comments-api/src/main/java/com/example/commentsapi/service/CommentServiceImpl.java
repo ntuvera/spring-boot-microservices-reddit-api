@@ -1,6 +1,8 @@
 package com.example.commentsapi.service;
 
+import com.example.commentsapi.bean.PostBean;
 import com.example.commentsapi.bean.UserBean;
+import com.example.commentsapi.feign.PostClient;
 import com.example.commentsapi.feign.UserClient;
 import com.example.commentsapi.model.Comment;
 import com.example.commentsapi.repository.CommentRepository;
@@ -19,6 +21,9 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private UserClient userClient;
 
+    @Autowired
+    private PostClient postClient;
+
     @Override
     public Comment createComment(Comment comment, int postId, int userId, String username) {
         HashMap<String, String> usernameMap = new HashMap<>();
@@ -34,14 +39,18 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Iterable<Comment> listCommentsByPostId(int postId) {
+        Iterable<Comment> foundPostComments = commentRepository.findAll();
 
-        Iterable<Comment> foundUserComments = commentRepository.findAll();
-
-        foundUserComments.forEach((comment) -> {
+        foundPostComments.forEach((comment) -> {
             UserBean fetchedUser = userClient.getUserById(comment.getUserId());
-            if(fetchedUser !=null) {
+
+            if(fetchedUser != null)
                 comment.setUser(fetchedUser);
-            }
+
+            PostBean fetchedPost = postClient.getPostById(comment.getPostId());
+            
+            if(fetchedPost != null)
+                comment.setPost(fetchedPost);
         });
 
         return commentRepository.listCommentsByPostId(postId);
@@ -53,9 +62,9 @@ public class CommentServiceImpl implements CommentService {
 
         foundUserComments.forEach((comment) -> {
             UserBean fetchedUser = userClient.getUserById(comment.getUserId());
-            if(fetchedUser !=null) {
+
+            if(fetchedUser != null)
                 comment.setUser(fetchedUser);
-            }
         });
         return commentRepository.listCommentsByUserId(userId);
     }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -56,5 +57,15 @@ public class PostServiceImpl implements PostService {
             }
         });
         return postRepository.findByUserId(userId);
+    }
+
+    @Override
+    public Optional<Post> findById(int postId) {
+        Optional<Post> foundPost = postRepository.findById(postId);
+
+        if (foundPost.isPresent())
+            return foundPost;
+
+        return null;
     }
 }
