@@ -1,11 +1,3 @@
-hystrix:
-  command:
-    default:
-      execution:
-        iso lation:
-          thread:
-            timeoutInMilliseconds: 30000
-
 ribbon:
   ReadTimeout: 60000
   connection-timeout: 3000
