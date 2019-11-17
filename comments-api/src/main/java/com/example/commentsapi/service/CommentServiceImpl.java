@@ -15,8 +15,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Comment createComment(Comment comment, int postId, int userId) {
-        comment.setPost_id(postId);
-        comment.setUser_id(userId);
+        comment.setPostId(postId);
+        comment.setUserId(userId);
         return commentRepository.save(comment);
     }
 

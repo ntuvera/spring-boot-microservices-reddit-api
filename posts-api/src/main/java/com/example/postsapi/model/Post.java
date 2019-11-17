@@ -18,7 +18,7 @@ public class Post {
 
     @Column
     private String description;
-
+// TODO: this shoudl be some kind of user.username
     @Column
     private int user_id;
 

@@ -5,7 +5,6 @@ import com.example.postsapi.feign.CommentClient;
 import com.example.postsapi.model.Post;
 import com.example.postsapi.service.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,6 +44,7 @@ public class PostsApiController {
     // Feign Client Comment routing
     @GetMapping("/{postId}/comment")
     public List<CommentBean> addCommentToPost(@PathVariable int postId, @RequestHeader("userId") Integer userId) {
-        return commentClient.getCommentsByPostId();
+        // TODO: change format, but check list of comments for now
+        return commentClient.getCommentsByPostId(postId);
     }
 }
