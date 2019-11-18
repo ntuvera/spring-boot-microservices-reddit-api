@@ -20,7 +20,9 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post createPost(Post newPost, int userId) {
-            return postRepository.save(newPost);
+        newPost.setUser_id(userId);
+        newPost.setUser(userClient.getUserById(userId));
+        return postRepository.save(newPost);
     }
 
     @Override
