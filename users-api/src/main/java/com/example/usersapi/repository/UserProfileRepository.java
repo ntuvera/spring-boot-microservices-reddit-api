@@ -9,5 +9,4 @@ import org.springframework.stereotype.Repository;
 public interface UserProfileRepository extends CrudRepository <UserProfile, Integer> {
     @Query(value = "SELECT * FROM user_profiles up WHERE up.user_id =:userId ORDER BY up.id DESC LIMIT 1", nativeQuery=true)
     public UserProfile getUserProfileByUserId(int userId);
-    // TODO: what the syntax for a single return would look like? or does it have to be translated to a single
 }

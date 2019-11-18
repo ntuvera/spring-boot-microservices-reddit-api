@@ -23,7 +23,6 @@ public class PostServiceImpl implements PostService {
         newPost.setUser_id(userId);
         newPost.setUser(userClient.getUserById(userId));
         return postRepository.save(newPost);
-        // TODO: Better confirmation of success/failure to post
     }
 
     @Override

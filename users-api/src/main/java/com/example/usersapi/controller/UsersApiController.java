@@ -9,7 +9,6 @@ import com.example.usersapi.model.UserProfile;
 import com.example.usersapi.service.UserProfileServiceImpl;
 import com.example.usersapi.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,11 +72,6 @@ public class UsersApiController {
     @PostMapping("/profile")
     public UserProfile createUserProfile(@RequestBody UserProfile userProfile, @RequestHeader("userId") int userId){
         return userProfileService.createProfile(userProfile, userId);
-    }
-
-    @DeleteMapping("/profile")
-    public UserProfile deleteUserProfile(@RequestBody UserProfile userProfile, @RequestHeader("userId") int userId){
-        return userProfileService.deleteProfile(userId);
     }
 
     // FeignClient Routes for inter-service communication
