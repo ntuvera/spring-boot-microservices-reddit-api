@@ -20,7 +20,10 @@ public class PostsApiController {
 
     @PostMapping("/")
     public Post createPost(@RequestBody Post newPost, @RequestHeader("userId") int userId) {
-        return postService.createPost(newPost, userId);
+        if(newPost.getTitle().trim().length() >0) {
+            return postService.createPost(newPost, userId);
+        }
+        return null;
     }
 
     @GetMapping("/list")
