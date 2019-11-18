@@ -1,24 +1,24 @@
 package com.example.usersapi.model;
 
 public class JwtResponse {
-    private String jwt;
+    private String token;
     private String username;
     private int id;
 
-    public JwtResponse(String jwt, String username, int id) {
-        this.jwt = jwt;
+    public JwtResponse(String token, String username, int id) {
+        this.token = token;
         this.username = username;
         this.id = id;
     }
 
     public JwtResponse() { }
 
-    public String getJwt() {
-        return jwt;
+    public String getToken() {
+        return token;
     }
 
-    public void setJwt(String jwt) {
-        this.jwt = jwt;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getUsername() {

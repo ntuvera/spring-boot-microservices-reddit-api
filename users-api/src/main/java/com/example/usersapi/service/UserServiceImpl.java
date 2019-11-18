@@ -31,13 +31,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public JwtResponse signUpUser(User newUser) {
         JwtResponse signupResponse = new JwtResponse();
-        UserRole userRole = userRoleService.getRole(newUser.getUserRole().getName());
+        UserRole userRole = null;
+
+        if (newUser.getUserRole() != null) {
+            userRole = userRoleService.getRole(newUser.getUserRole().getName());
+        } else {
+            userRole = userRoleService.getRole("ROLE_USER");
+        }
+
         newUser.setUserRole(userRole);
         newUser.setPassword(encoder().encode(newUser.getPassword()));
 
         if (userRepository.save(newUser) != null) {
             User user = loadUserByUsername(newUser.getUsername());
-            signupResponse.setJwt(jwtUtil.generateToken(user));
+            signupResponse.setToken(jwtUtil.generateToken(user));
             signupResponse.setUsername(newUser.getUsername());
             signupResponse.setId(newUser.getId());
 
@@ -51,11 +58,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public JwtResponse loginUser(User user) {
         JwtResponse loginResponse = new JwtResponse();
-        User foundUser = userRepository.findByUsername(user.getUsername());
+        User foundUser = userRepository.findByEmail(user.getEmail());
 
         if (foundUser != null && encoder()
                 .matches(user.getPassword(), foundUser.getPassword())) {
-            loginResponse.setJwt(jwtUtil.generateToken(foundUser));
+            loginResponse.setToken(jwtUtil.generateToken(foundUser));
             loginResponse.setUsername(foundUser.getUsername());
             loginResponse.setId(foundUser.getId());
             return loginResponse;

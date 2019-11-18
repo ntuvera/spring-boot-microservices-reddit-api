@@ -50,6 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                         "/comment/**").authenticated()
                 .antMatchers("/role/**").hasRole("ADMIN")
                 .and()
+                .cors()
+                .and()
                 .httpBasic()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
