@@ -12,4 +12,6 @@ public interface CommentService {
 
     public String deleteByCommentId(int commentId);
 
+    public void deleteByPostId(int postId);
+
 }

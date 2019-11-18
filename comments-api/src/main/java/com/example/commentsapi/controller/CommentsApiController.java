@@ -31,4 +31,9 @@ public class CommentsApiController {
         return commentService.deleteByCommentId(commentId);
     }
 
+    @DeleteMapping("/purge/{postId}")
+    public void deleteByPostId(@PathVariable int postId) {
+        commentService.deleteByPostId(postId);
+    }
+
 }

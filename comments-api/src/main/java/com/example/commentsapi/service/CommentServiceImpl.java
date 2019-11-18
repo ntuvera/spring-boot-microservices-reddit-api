@@ -79,4 +79,9 @@ public class CommentServiceImpl implements CommentService {
         }
         return "Delete comment succeeded";
     }
+
+    @Override
+    public void deleteByPostId(int postId) {
+       commentRepository.purgeComments(postId);
+    }
 }
