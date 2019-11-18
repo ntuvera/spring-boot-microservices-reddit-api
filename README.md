@@ -34,7 +34,7 @@ Additionally, a large amount of time was spent attempting to deploy our applicat
 ### Pivotal Tracker _(for planning and organizing tasks)_
 https://www.pivotaltracker.com/n/projects/2417719
 
-### ERD Diagram
+### ERD
 <img src="./assets/P3-ERD.png" alt="Reddit_clone_backend_ERD" />
 
 ### Microservice Architecture
@@ -80,3 +80,7 @@ Launching the front-end(Using JetBrains IntelliJ)
 9. Under the Run Menu, click `Run Tomcat version number`
 10. Access the API either through postman endpoints or through the index.html page in the `P1_source` folder
 
+### Backlog
+- Improve on exception handling
+- Implement Hibernate instead of Flyway
+- Write integration and unit tests
