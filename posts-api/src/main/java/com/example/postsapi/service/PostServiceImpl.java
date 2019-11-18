@@ -20,15 +20,14 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post createPost(Post newPost, int userId) {
-        newPost.setUser_id(userId);
-        return postRepository.save(newPost);
-        // TODO: Better confirmation of success/failure to post
+            return postRepository.save(newPost);
     }
 
     @Override
     public String deletePost(int postId) {
        postRepository.deleteById(postId);
-       return "post delete triggered";
+       return "post: " + postId + "successfully deleted";
+       // TODO: how to sort out void response to check if post successfully deleted
     }
 
     @Override

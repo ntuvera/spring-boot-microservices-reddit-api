@@ -13,12 +13,12 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(nullable = false)
     private String title;
 
     @Column
     private String description;
-// TODO: this shoudl be some kind of user.username
+
     @Column
     private int user_id;
 

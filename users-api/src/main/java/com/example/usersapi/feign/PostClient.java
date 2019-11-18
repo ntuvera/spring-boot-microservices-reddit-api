@@ -8,7 +8,6 @@ import java.util.List;
 
 @FeignClient(name="post")
 public interface PostClient {
-//    @GetMapping(value="/post/list", consumes=MediaType.Application_JSON_VALUE)
     @GetMapping(value="/list")
     List<PostBean> getAllPosts();
 

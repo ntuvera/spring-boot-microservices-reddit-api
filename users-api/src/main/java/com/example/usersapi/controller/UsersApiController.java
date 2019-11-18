@@ -11,8 +11,8 @@ import com.example.usersapi.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
 
 @RestController
 public class UsersApiController {
@@ -36,7 +36,16 @@ public class UsersApiController {
 
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody User user){
-        return ResponseEntity.ok(userService.loginUser(user));
+        if(userService.loginUser(user) != null) {
+            return ResponseEntity.ok(userService.loginUser(user));
+        }
+
+
+        Map<String,String> response = new HashMap<String, String>();
+        response.put("httpStatus", "BAD_REQUEST");
+        response.put("message", "Username or Password is incorrect");
+        response.put("timestamp", String.valueOf(new Date().getTime()));
+        return ResponseEntity.badRequest().body(response);
     }
 
     @GetMapping("/list")
@@ -63,11 +72,6 @@ public class UsersApiController {
     @PostMapping("/profile")
     public UserProfile createUserProfile(@RequestBody UserProfile userProfile, @RequestHeader("userId") int userId){
         return userProfileService.createProfile(userProfile, userId);
-    }
-
-    @DeleteMapping("/profile")
-    public UserProfile deleteUserProfile(@RequestBody UserProfile userProfile, @RequestHeader("userId") int userId){
-        return userProfileService.deleteProfile(userId);
     }
 
     // FeignClient Routes for inter-service communication

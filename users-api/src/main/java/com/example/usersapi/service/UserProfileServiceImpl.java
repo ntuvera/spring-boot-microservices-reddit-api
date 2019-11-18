@@ -25,13 +25,10 @@ public class UserProfileServiceImpl implements UserProfileService{
         newUserProfile.setUserId(userId);
             if(foundUser.isPresent()) {
                 foundUser.get().setUserProfile(newUserProfile);
-//                userRepository.save(foundUser.get());
             } else {
                 return null;
-                // TODO: better handling of failure
             }
         return userProfileRepository.save(userProfile);
-//        return newUserProfile;
 
     }
 
@@ -46,7 +43,6 @@ public class UserProfileServiceImpl implements UserProfileService{
             userRepository.save(foundUser.get());
         } else {
             return null;
-            // TODO: better handling of failure
         }
         newUserProfile = userProfileRepository.save(userProfile);
 
@@ -55,14 +51,6 @@ public class UserProfileServiceImpl implements UserProfileService{
 
     @Override
     public UserProfile getUserProfile(int userId) {
-//        return Iterable.get(userProfileRepository.getUserProfileByUserId(userId),0);
-//        return userProfileRepository.getUserProfileByUserId(userId).iterator().next();
         return userProfileRepository.getUserProfileByUserId(userId);
-    }
-
-    @Override
-    public UserProfile deleteProfile(int UserId) {
-//        userProfileRepository.deleteById();
-        return null;
     }
 }
