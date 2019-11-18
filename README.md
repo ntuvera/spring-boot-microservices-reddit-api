@@ -33,10 +33,29 @@ Another major hurdle we faced was our erd and database.  At initial planning it 
 https://www.pivotaltracker.com/n/projects/2417719
 
 ### ERD Diagram
-![Reddit_clone_backend_ERD]()
+<img src="./assets/P3-ERD.png" alt="Reddit_clone_backend_ERD" />
 
 ### Microservice Architecture
-![Reddit_clone_architecture]()
+<img src="./assets/P3-Whiteboarding-00.jpg" alt="Reddit_clone_architecture" />
+<img src="./assets/P3-Whiteboarding-01.jpg" alt="Reddit_clone_architecture" />
+<img src="./assets/P3-Architecture.png" alt="Reddit_clone_architecture" />
+
+### API Endpoints
+|          Description         |        Endpoint        | Method |
+|:----------------------------:|:----------------------:|:------:|
+|            Sign Up           | /signup                |  POST  |
+|            Log In            | /login                 |  POST  |
+|        Create Comment        | /comment/{postId}      |  POST  |
+|   List Comments By Post ID   | /post/{postId}/comment |   GET  |
+|   List Comments By User ID   | /user/comment          |   GET  |
+| Delete Comment By Comment ID | /comment/{commentId}   | DELETE |
+|          Create Post         | /post                  |  POST  |
+|          List Posts          | /post/list             |   GET  |
+|      List Posts By User      | /user/post             |   GET  |
+|    Delete Post By Post ID    | /post/{postId}         | DELETE |
+|      Create User Profile     | /profile               |  POST  |
+|       Get User Profile       | /profile               |   GET  |
+|        Update Profile        | /profile               |  POST  |
 
 ### How to Run Project
 
