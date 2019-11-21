@@ -46,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                         "/user/comment",
                         "/profile/**",
                         "/post/**",
+                        "/purge/**",
                         "/comment/**").authenticated()
                 .antMatchers("/role/**").hasRole("ADMIN")
                 .and()

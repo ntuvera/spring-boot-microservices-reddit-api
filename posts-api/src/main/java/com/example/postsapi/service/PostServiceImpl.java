@@ -1,6 +1,7 @@
 package com.example.postsapi.service;
 
 import com.example.postsapi.bean.UserBean;
+import com.example.postsapi.feign.CommentClient;
 import com.example.postsapi.feign.UserClient;
 import com.example.postsapi.model.Post;
 import com.example.postsapi.repository.PostRepository;
@@ -18,6 +19,9 @@ public class PostServiceImpl implements PostService {
     @Autowired
     UserClient userClient;
 
+    @Autowired
+    CommentClient commentClient;
+
     @Override
     public Post createPost(Post newPost, int userId) {
         newPost.setUser_id(userId);
@@ -28,7 +32,8 @@ public class PostServiceImpl implements PostService {
     @Override
     public String deletePost(int postId) {
        postRepository.deleteById(postId);
-       return "post: " + postId + "successfully deleted";
+       commentClient.deleteCommmentsByPostId(postId);
+       return "post: " + postId + " successfully deleted";
        // TODO: how to sort out void response to check if post successfully deleted
     }
 
