@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'new changes'
                 sh 'cd eureka-server && mvn -B -DskipTests clean package'
                 sh 'pwd'
                 sh 'cd ../api-gateway && mvn -B -DskipTests clean package'
