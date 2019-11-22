@@ -12,4 +12,9 @@ public class Receiver {
     public void receive(String msg) throws InterruptedException {
         System.out.println("message received: " + msg);
     }
+
+//    @RabbitHandler
+//    public void receivePostId(int postId) throws InterruptedException {
+//        System.out.println("message received: " + postId);
+//    }
 }

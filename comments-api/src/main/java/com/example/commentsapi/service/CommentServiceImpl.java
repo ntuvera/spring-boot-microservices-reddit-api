@@ -45,8 +45,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Iterable<Comment> listCommentsByPostId(int postId) {
+        System.out.println(postId);
+        sender.sendPostId((String.valueOf(postId)));
         listComments();
-        sender.sendPostId(postId);
 
         return commentRepository.listCommentsByPostId(postId);
     }

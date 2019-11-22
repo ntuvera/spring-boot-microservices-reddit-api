@@ -1,6 +1,7 @@
 package com.example.commentsapi.controller;
 
 import com.example.commentsapi.model.Comment;
+import com.example.commentsapi.mq.Sender;
 import com.example.commentsapi.service.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,15 @@ public class CommentsApiController {
 
     @Autowired
     private CommentServiceImpl commentService;
+
+    @Autowired
+    private Sender sender;
+
+    @GetMapping("/helloworld")
+    public String hello(){
+        sender.sendPostId("what");
+        return "Hello world";
+    }
 
     @PostMapping("/{postId}")
     public Comment createComment(@RequestBody Comment comment, @PathVariable int postId, @RequestHeader("userId") int userId, @RequestHeader("username") String username) {
