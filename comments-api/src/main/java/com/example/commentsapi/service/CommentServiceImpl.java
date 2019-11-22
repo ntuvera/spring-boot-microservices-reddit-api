@@ -5,6 +5,7 @@ import com.example.commentsapi.bean.UserBean;
 import com.example.commentsapi.feign.PostClient;
 import com.example.commentsapi.feign.UserClient;
 import com.example.commentsapi.model.Comment;
+import com.example.commentsapi.mq.Sender;
 import com.example.commentsapi.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,9 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private PostClient postClient;
 
+    @Autowired
+    private Sender sender;
+
     @Override
     public Comment createComment(Comment comment, int postId, int userId, String username) {
         HashMap<String, String> usernameMap = new HashMap<>();
@@ -42,7 +46,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Iterable<Comment> listCommentsByPostId(int postId) {
         listComments();
-
+        sender.send("Gotten all post's comments");
         return commentRepository.listCommentsByPostId(postId);
     }
 
