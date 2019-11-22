@@ -9,7 +9,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'cd eureka-server && mvn -B -DskipTests clean package'
-                sh 'echo "inside Build worked"'
+                sh 'pwd'
+                sh 'cd ../api-gateway && mvn -B -DskipTests clean package'
             }
         }
         stage('Confirmation') {
