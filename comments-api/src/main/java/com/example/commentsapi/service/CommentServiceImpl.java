@@ -5,7 +5,6 @@ import com.example.commentsapi.bean.UserBean;
 import com.example.commentsapi.feign.PostClient;
 import com.example.commentsapi.feign.UserClient;
 import com.example.commentsapi.model.Comment;
-import com.example.commentsapi.mq.Sender;
 import com.example.commentsapi.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +14,6 @@ import java.util.Optional;
 
 @Service
 public class CommentServiceImpl implements CommentService {
-
-    @Autowired
-    private Sender sender;
 
     @Autowired
     private CommentRepository commentRepository;
@@ -46,7 +42,6 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Iterable<Comment> listCommentsByPostId(int postId) {
         System.out.println(postId);
-        sender.sendPostId((String.valueOf(postId)));
         listComments();
 
         return commentRepository.listCommentsByPostId(postId);

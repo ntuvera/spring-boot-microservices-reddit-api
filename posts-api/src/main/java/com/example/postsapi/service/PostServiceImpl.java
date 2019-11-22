@@ -4,6 +4,7 @@ import com.example.postsapi.bean.UserBean;
 import com.example.postsapi.feign.CommentClient;
 import com.example.postsapi.feign.UserClient;
 import com.example.postsapi.model.Post;
+import com.example.postsapi.mq.Sender;
 import com.example.postsapi.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class PostServiceImpl implements PostService {
     @Autowired
     CommentClient commentClient;
 
+    @Autowired
+    Sender sender;
+
     @Override
     public Post createPost(Post newPost, int userId) {
         newPost.setUser_id(userId);
@@ -32,7 +36,8 @@ public class PostServiceImpl implements PostService {
     @Override
     public String deletePost(int postId) {
        postRepository.deleteById(postId);
-       commentClient.deleteCommmentsByPostId(postId);
+       sender.sendPostId(String.valueOf(postId));
+//       commentClient.deleteCommmentsByPostId(postId);
        return "post: " + postId + " successfully deleted";
        // TODO: how to sort out void response to check if post successfully deleted
     }
