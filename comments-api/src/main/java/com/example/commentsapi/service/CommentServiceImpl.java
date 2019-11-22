@@ -17,7 +17,7 @@ import java.util.Optional;
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
-    Sender sender;
+    private Sender sender;
 
     @Autowired
     private CommentRepository commentRepository;
@@ -27,9 +27,6 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private PostClient postClient;
-
-    @Autowired
-    private Sender sender;
 
     @Override
     public Comment createComment(Comment comment, int postId, int userId, String username) {
@@ -49,7 +46,8 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Iterable<Comment> listCommentsByPostId(int postId) {
         listComments();
-        sender.send("Gotten all post's comments");
+        sender.sendPostId(postId);
+
         return commentRepository.listCommentsByPostId(postId);
     }
 

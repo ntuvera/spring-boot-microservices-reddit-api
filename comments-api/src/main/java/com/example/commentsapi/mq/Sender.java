@@ -18,4 +18,10 @@ public class Sender {
         rabbitTemplate.convertAndSend(queue.getName(), message);
         System.out.println("Message sent: " + message + " on q: " + queue.getName());
     }
+
+    public void sendPostId(int postId) {
+        // TODO: how to specify consumer?
+        rabbitTemplate.convertAndSend(queue.getName(), postId);
+        System.out.println("PostId sent: " + postId + " on q: " + queue.getName());
+    }
 }
