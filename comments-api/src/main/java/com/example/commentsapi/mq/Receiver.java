@@ -10,7 +10,6 @@ public class Receiver {
 
     @RabbitHandler
     public void receive(String msg) throws InterruptedException {
-        Thread.sleep(500);
-        System.out.println("message receivesd: " + msg);
+        System.out.println("message received: " + msg);
     }
 }

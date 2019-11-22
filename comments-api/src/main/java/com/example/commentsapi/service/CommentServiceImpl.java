@@ -17,6 +17,9 @@ import java.util.Optional;
 public class CommentServiceImpl implements CommentService {
 
     @Autowired
+    Sender sender;
+
+    @Autowired
     private CommentRepository commentRepository;
 
     @Autowired

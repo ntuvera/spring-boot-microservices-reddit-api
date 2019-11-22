@@ -91,6 +91,10 @@
       <artifactId>spring-boot-starter-amqp</artifactId>
     </dependency>
 	</dependencies>
+      <groupId>org.springframework.amqp</groupId>
+      <artifactId>spring-amqp</artifactId>
+    </dependency>
+  </dependencies>
 
 	<build>
 		<plugins>
