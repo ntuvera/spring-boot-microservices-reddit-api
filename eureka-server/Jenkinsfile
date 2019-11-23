@@ -1,30 +1,30 @@
 pipeline {
     agent {
-      docker {
-        image 'maven:3-alpine'
-        args ' -v /tmp/.m2:/tmp/.m2'
-      }
+        docker {
+            image 'maven:3-alpine'
+            args ' -v /tmp/.m2:/tmp/.m2'
+        }
     }
     stages {
-      stage('Build') {
-        steps {
-          sh 'cd eureka-server && mvn -B -DskipTests clean package'
+        stage('Build') {
+            steps {
+                sh 'cd eureka-server && mvn -B -DskipTests clean package'
+            }
         }
-      }
     }
     stage('Test') {
-      steps {
-        sh 'cd eureka-server && mvn test'
-      }
-      post {
-        always {
-          junit 'target/surefire-reports/*.xml'
+        steps {
+            sh 'mvn test'
         }
-      }
+        post {
+            always {
+                junit 'target/surefire-reports/*.xml'
+            }
+        }
     }
     stage('Deliver') { 
-      steps {
-        sh './jenkins/scripts/deliver.sh' 
-      }
+        steps {
+            sh './jenkins/scripts/deliver.sh' 
+        }
     }
 }
