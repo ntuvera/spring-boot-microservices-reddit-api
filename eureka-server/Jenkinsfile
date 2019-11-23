@@ -23,7 +23,8 @@ pipeline {
         }
         stage('Deliver') { 
             steps {
-                sh './jenkins/scripts/deliver.sh' 
+                sh 'pwd'
+                sh 'eureka-server/jenkins/scripts/deliver.sh' 
             }
         }
     }
