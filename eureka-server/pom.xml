@@ -64,7 +64,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>com.mycompany.app.App</mainClass>
+              <mainClass>com.example.eurekaserver.EurekaServerApplication</mainClass>
             </manifest>
           </archive>
         </configuration>
