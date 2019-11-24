@@ -1,7 +1,7 @@
 ![Reddit_clone_backend_API](./assets/FakeRedditLogo.png)
 # Reddit-Clone-Microservices
 **Front-end**: @ToddS1 & @magfurulabeer || **Back-end microservies**: @stevencharleshuang & @ntuvera
-
+ 
 
 ### Technologies Used:
 - Spring Boot: Framework for microservices
