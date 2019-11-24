@@ -21,10 +21,10 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') { 
-            steps {
-                sh 'eureka-server/jenkins/scripts/deliver.sh' 
-            }
-        }
+        // stage('Deliver') { 
+        //     steps {
+        //         sh 'eureka-server/jenkins/scripts/deliver.sh' 
+        //     }
+        // }
     }
 }
