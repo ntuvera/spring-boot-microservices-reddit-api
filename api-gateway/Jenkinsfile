@@ -1,0 +1,30 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args ' -v /tmp/.m2:/tmp/.m2'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'cd api-gateway && mvn -B -DskipTests clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'cd api-gateway && mvn test'
+            }
+            post {
+                always {
+                    junit 'api-gateway/target/surefire-reports/*.xml'
+                }
+            }
+        }
+        // stage('Deliver') { 
+        //     steps {
+        //         sh 'api-gateway/jenkins/scripts/deliver.sh' 
+        //     }
+        // }
+    }
+}
