@@ -2,9 +2,9 @@
 pipeline {
     agent any
     stages {
-        stage('Test') {
+        stage('Build Eureka Server') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                sh 'cd eureka-server && mvn clean package'
             }
         }
     }
