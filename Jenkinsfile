@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'cd eureka-server && mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
             steps {
-                sh 'cd eureka-server && mvn test'
+                sh 'mvn test'
             }
             post {
                 always {
@@ -21,10 +21,5 @@ pipeline {
                 }
             }
         }
-        // stage('Deliver') { 
-        //     steps {
-        //         sh 'eureka-server/jenkins/scripts/deliver.sh' 
-        //     }
-        // }
     }
 }
