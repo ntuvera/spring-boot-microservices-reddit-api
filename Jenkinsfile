@@ -14,22 +14,22 @@ pipeline {
         }
         stage('Build API Gateway') {
             steps {
-                sh 'cd eureka-server && mvn -B -DskipTests clean package'
+                sh 'cd api-gateway && mvn -B -DskipTests clean package'
             }
         }
         stage('Build Users API') {
             steps {
-                sh 'cd eureka-server && mvn -B -DskipTests clean package'
+                sh 'cd users-api && mvn -B -DskipTests clean package'
             }
         }
         stage('Build Comments API') {
             steps {
-                sh 'cd eureka-server && mvn -B -DskipTests clean package'
+                sh 'cd comments-api && mvn -B -DskipTests clean package'
             }
         }
         stage('Build Posts API') {
             steps {
-                sh 'cd eureka-server && mvn -B -DskipTests clean package'
+                sh 'cd posts-api && mvn -B -DskipTests clean package'
             }
         }
         stage('Test Eureka Server') {
@@ -54,31 +54,31 @@ pipeline {
         }
         stage('Test Users API') {
             steps {
-                sh 'cd api-gateway && mvn test'
+                sh 'cd users-api && mvn test'
             }
             post {
                 always {
-                    junit 'api-gateway/target/surefire-reports/*.xml'
+                    junit 'users-api/target/surefire-reports/*.xml'
                 }
             }
         }
         stage('Test Comments API') {
             steps {
-                sh 'cd api-gateway && mvn test'
+                sh 'cd comments-api && mvn test'
             }
             post {
                 always {
-                    junit 'api-gateway/target/surefire-reports/*.xml'
+                    junit 'comments-api/target/surefire-reports/*.xml'
                 }
             }
         }
         stage('Test Posts API') {
             steps {
-                sh 'cd api-gateway && mvn test'
+                sh 'cd posts-api && mvn test'
             }
             post {
                 always {
-                    junit 'api-gateway/target/surefire-reports/*.xml'
+                    junit 'posts-api/target/surefire-reports/*.xml'
                 }
             }
         }
