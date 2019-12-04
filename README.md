@@ -2,6 +2,16 @@
 # Reddit-Clone-Microservices
 **Front-end**: @ToddS1 & @magfurulabeer || **Back-end microservies**: @stevencharleshuang & @ntuvera
  
+ 
+ ### Microservice Repos:
+ | Service       | Github Repo Link                                    |
+|---------------|-----------------------------------------------------|
+| API Gateway   | https://github.com/ntuvera/fakereddit-api-gateway   |
+| Eureka Server | https://github.com/ntuvera/fakereddit-eureka-server |
+| Comments      | https://github.com/ntuvera/fakereddit-comments-api  |
+| Posts         | https://github.com/ntuvera/fakereddit-posts-api     |
+| Users         | https://github.com/ntuvera/fakereddit-users-api     |
+ 
 
 ### Technologies Used:
 - Spring Boot: Framework for microservices
@@ -23,7 +33,6 @@
 - Swagger: Restful API Documentation
 - Jenkins: Continuous Integration
 - JaCoco: Test Coverage reporting in Jenkins
-- 
 
 ### General Approach
 To start we began by planning and diagramming our ERD and Microservice architecture.  After the initial mock-up we started by writing our Project planning using PivotalTracker with a combination of User Stories and Tasks.  The goal was to map out and replicate the expected endpoints and returns.  After the first day of planning we took a few days to research, the best ways to implement interservice communication.  Given that the backend was a originally built as a monolith, the focus was to split it into microservices based on their main model.  While it is built on a single Postgres DB, by ensuring separation of the services and applying OpenFeign, the database will be able to be split into separate db's down the line.  
