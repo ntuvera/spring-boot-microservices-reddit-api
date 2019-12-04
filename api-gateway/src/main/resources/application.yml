@@ -24,6 +24,22 @@ zuul:
       path: /user/post
       serviceId: post
       strip-prefix: false
+    post:
+      path: /post/**
+      serviceId: post
+#      strip-prefix: false
+    comment:
+      path: /comment/**
+      serviceId: comment
+#      strip-prefix: false
+    user:
+      path: /user/**
+      serviceId: user
+#      strip-prefix: false
+#    swag:
+#      path: /v2/**
+#      serviceId: api-gateway
+#      strip-prefix: false
 
 ribbon:
   ReadTimeout: 60000

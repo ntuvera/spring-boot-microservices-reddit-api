@@ -17,6 +17,8 @@ public class UserBean {
         this.password = password;
     }
 
+    public UserBean() {}
+
     public int getId() {
         return id;
     }

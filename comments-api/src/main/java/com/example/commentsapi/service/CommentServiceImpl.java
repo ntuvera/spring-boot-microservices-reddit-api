@@ -2,22 +2,23 @@ package com.example.commentsapi.service;
 
 import com.example.commentsapi.bean.PostBean;
 import com.example.commentsapi.bean.UserBean;
+import com.example.commentsapi.exception.EmptyInputException;
 import com.example.commentsapi.feign.PostClient;
 import com.example.commentsapi.feign.UserClient;
 import com.example.commentsapi.model.Comment;
-import com.example.commentsapi.mq.Sender;
 import com.example.commentsapi.repository.CommentRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.HashMap;
 import java.util.Optional;
 
 @Service
 public class CommentServiceImpl implements CommentService {
-
-    @Autowired
-    private Sender sender;
 
     @Autowired
     private CommentRepository commentRepository;
@@ -28,17 +29,31 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private PostClient postClient;
 
+    private static final Logger logger = LoggerFactory.getLogger(CommentServiceImpl.class);
+
     @Override
-    public Comment createComment(Comment comment, int postId, int userId, String username) {
+    public Comment createComment(Comment comment, int postId, int userId, String username) throws EntityNotFoundException, EmptyInputException {
+        PostBean targetPost = postClient.getPostById(postId);
+        UserBean targetUser = userClient.getUserById(userId);
+        if(targetPost == null) {
+            throw new EntityNotFoundException("Post does not exist");
+        }
+
+        if(comment.getText().trim() == "") {
+            throw new EmptyInputException(HttpStatus.BAD_REQUEST,"Comment text cannot be blank");
+        }
+
         HashMap<String, String> usernameMap = new HashMap<>();
         usernameMap.put("username", username);
 
         comment.setPostId(postId);
         comment.setUserId(userId);
-        comment.setUser(userClient.getUserById(userId));
-        comment.setPost(postClient.getPostById(postId));
+        comment.setUser(targetUser);
+        comment.setPost(targetPost);
 
         Comment newComment = commentRepository.save(comment);
+
+        logger.info(targetUser.getUsername() + " just added a comment to post: " + targetPost.getTitle() + " comment text: " + comment.getText());
 
         return newComment;
     }
@@ -46,7 +61,6 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Iterable<Comment> listCommentsByPostId(int postId) {
         listComments();
-        sender.sendPostId(postId);
 
         return commentRepository.listCommentsByPostId(postId);
     }
@@ -58,7 +72,7 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.listCommentsByUserId(userId);
     }
 
-    private Iterable<Comment> listComments() {
+    protected Iterable<Comment> listComments() {
         Iterable<Comment> foundUserComments = commentRepository.findAll();
 
         foundUserComments.forEach((comment) -> {
@@ -68,7 +82,7 @@ public class CommentServiceImpl implements CommentService {
                 comment.setUser(fetchedUser);
 
             PostBean fetchedPost = postClient.getPostById(comment.getPostId());
-
+            fetchedPost.setUser(userClient.getUserById(fetchedPost.getUser_id()));
             if(fetchedPost != null)
                 comment.setPost(fetchedPost);
         });
@@ -82,6 +96,9 @@ public class CommentServiceImpl implements CommentService {
         if (foundComment.isPresent()) {
             return "Delete comment failed";
         }
+
+        logger.info("A comment was just deleted comment text: " + foundComment.get().getText());
+
         return "Delete comment succeeded";
     }
 
