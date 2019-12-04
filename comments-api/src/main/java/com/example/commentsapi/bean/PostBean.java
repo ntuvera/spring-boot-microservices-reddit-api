@@ -6,6 +6,7 @@ public class PostBean {
     private String title;
     private String description;
     private int user_id;
+    private UserBean user;
 
     public PostBean() {}
 
@@ -40,9 +41,20 @@ public class PostBean {
         this.description = description;
     }
 
-    public int getUser_id() { return user_id; }
+    public int getUser_id() {
+        return user_id;
+    }
 
-    public void setUser_id(int user_id) { this.user_id = user_id; }
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
+    public UserBean getUser() {
+        return user;
+    }
+
+    public void setUser(UserBean user) {
+        this.user = user;
+    }
 }
 

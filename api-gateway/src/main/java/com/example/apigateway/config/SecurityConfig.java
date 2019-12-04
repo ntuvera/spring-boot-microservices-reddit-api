@@ -40,6 +40,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                         "/user/identify/**",
                         "/post/list",
                         "/comment/list",
+                        "/v2/api-docs",
+                        "/swagger-ui.html**",
+                        "/webjars/**",
+                        "/swagger",
+                        "/swagger-ui**",
+                        "/swagger-resources",
+                        "/comment/v2/**",
+                        "/post/v2/**",
+                        "/user/v2/**",
                         "/post/*/comment").permitAll()
                 .antMatchers(
                         "/user/list",
