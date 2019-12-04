@@ -81,6 +81,9 @@ https://www.pivotaltracker.com/n/projects/2417719
 <img src="./assets/P3-Whiteboarding-01.jpg" alt="Reddit_clone_architecture" />
 <img src="./assets/P3-Architecture.png" alt="Reddit_clone_architecture" />
 
+#### update: v2 11/21/2019 - 12/4/2019
+<img src="https://res.cloudinary.com/dk1cgfxkn/image/upload/v1575483698/P3_Fake_Reddit_Back_End_Architecture-Updated.png" alt="updated_architecture"/>
+
 ### API Endpoints
 |          Description         |        Endpoint        | Method |
 |:----------------------------:|:----------------------:|:------:|
